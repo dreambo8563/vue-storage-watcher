@@ -1,4 +1,4 @@
-import { VueConstructor } from "vue";
+import Vue, { VueConstructor } from "vue";
 
 type lsOption = {
   prefix: string;
@@ -133,7 +133,7 @@ class LSWatcher {
 // 暂时只用单例
 
 export default {
-  install(Vue: VueConstructor, options: lsOption) {
-    Vue.prototype.$ls = new LSWatcher(options);
+  install(vue: VueConstructor, options: lsOption) {
+    vue.prototype.$ls = new LSWatcher(options);
   }
 };
