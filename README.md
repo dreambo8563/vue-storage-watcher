@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/dreambo8563/vue-storage-watcher.svg?branch=master)](https://travis-ci.com/dreambo8563/vue-storage-watcher)
+
 # vue-storage-watcher
 
 the real reactive watcher for localStorge.
@@ -35,6 +37,14 @@ this.$ls.set("token", "abccc")
 
 the value will be save in storage with the **prefix** + key
 and emit the change value to all the subscriber of this key
+
+> you also can give the key an expire duration with unit of ms
+
+```js
+this.$ls.set("token", "abccc", 3000)
+```
+
+the will be expried in 3s, you will get null after that.
 
 #### get
 
