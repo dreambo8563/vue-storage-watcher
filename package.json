@@ -1,0 +1,53 @@
+{
+  "name": "vue-storage-watcher",
+  "version": "0.1.0",
+  "author": "dreambo8563",
+  "main": "./dist/vue-storage-watcher.umd.min.js",
+  "private": false,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "build-bundle": "npm run lint && vue-cli-service build --target lib --name vue-storage-watcher ./src/main.ts",
+    "report": "npm run lint && vue-cli-service build --report --target lib --name vue-storage-watcher ./src/main.ts",
+    "test": "npm run build-bundle"
+  },
+  "dependencies": {
+    "vue": "^2.5.21"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dreambo8563/vue-storage-watcher.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dreambo8563/vue-storage-watcher/issues"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@vue/cli-plugin-eslint": "^3.3.0",
+    "@vue/cli-plugin-typescript": "^3.3.0",
+    "@vue/cli-service": "^3.3.0",
+    "@vue/eslint-config-prettier": "^4.0.1",
+    "@vue/eslint-config-typescript": "^3.2.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "typescript": "~3.1.1",
+    "vue-template-compiler": "^2.5.21"
+  },
+  "files": [
+    "dist/*",
+    "src/*",
+    "package.json",
+    "*.js",
+    "README.md"
+  ],
+  "keywords": [
+    "vue",
+    "storage",
+    "reactive",
+    "vue-ls",
+    "watch",
+    "vue-storage"
+  ]
+}
