@@ -13,7 +13,8 @@
     "baseUrl": ".",
     "types": ["webpack-env"],
     "declaration": true,
-    "outDir": "./dist",
+    "typeRoots": ["types"],
+    "outDir": "./types",
     "paths": {
       "@/*": ["src/*"]
     },
