@@ -1,10 +1,10 @@
 {
   "name": "vue-storage-watcher",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "dreambo8563",
-  "main": "./dist/vue-storage-watcher.umd.min.js",
+  "main": "dist/vue-storage-watcher.umd.min.js",
   "private": false,
-  "types": "dist/main.d.ts",
+  "typings": "types/index.d.ts",
   "description": "A reactive localStorage plugin for vue",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -40,6 +40,7 @@
   "files": [
     "dist/*",
     "src/*",
+    "types/*",
     "package.json",
     "*.js",
     "README.md"
