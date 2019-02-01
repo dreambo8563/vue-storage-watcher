@@ -155,11 +155,19 @@ class LSWatcher {
   }
 }
 // 暂时只用单例
-
-export default {
+export type LsWatcherPlugin = {
+  install(
+    vue: VueConstructor<Vue>,
+    options: {
+      prefix: string;
+    }
+  ): void;
+};
+const instantce: LsWatcherPlugin = {
   install(vue: VueConstructor, options: lsOption) {
     vue.prototype.$ls = new LSWatcher(options) as ILSWatcher;
   }
 };
+export default instantce;
 
 export { ILSWatcher };
