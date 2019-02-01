@@ -3,25 +3,42 @@ import Vue, { VueConstructor } from "vue";
 type lsOption = {
   prefix: string;
 };
+interface ILSWatcher {
+  // constuctor(op: lsOption): void;
+  on(key: string, fn: Function, immediate?: boolean): Symbol;
+  set(key: string, payload: any, expire?: number | null): void;
+  broadcast(key: string, payload?: any): void;
+  broadcastAll(payload?: any): void;
+  has(key: string): boolean;
+  clear(): void;
+  get(key: string, def?: any): any;
+  init(): void;
+  remove(key: string): void;
+  off(key: string, handler: Symbol): void;
+}
 class LSWatcher {
   // 内置事件队列
   private queue: Map<string, Map<Symbol, Function>> = new Map();
   private prefix = "";
   constructor(options: lsOption) {
-    this.prefix = options.prefix || "";
+    this.prefix = options.prefix || "lswatcher_";
   }
   // 注册事件
-  on(key: string, fn: Function) {
+  on(key: string, fn: Function, immediate: boolean = false): Symbol {
     const handler = Symbol(fn.name);
-    if (this.queue.get(this.prefix + key)) {
-      this.queue.get(this.prefix + key)!.set(handler, fn);
+    const keyInQueue = this.queue.get(this.prefix + key);
+    if (keyInQueue) {
+      keyInQueue!.set(handler, fn);
     } else {
       this.queue.set(this.prefix + key, new Map().set(handler, fn));
+    }
+    if (immediate) {
+      fn(this.get(key));
     }
     return handler;
   }
   //赋值
-  set(key: string, payload: any, expire: number | null = null) {
+  set(key: string, payload: any, expire: number | null = null): void {
     // 先存入 ls
     const stringifyValue = JSON.stringify({
       value: payload,
@@ -31,7 +48,7 @@ class LSWatcher {
     // 通知订阅者
     this.broadcast(this.prefix + key, payload);
   }
-  broadcast(key: string, payload: any = null) {
+  broadcast(key: string, payload: any = null): void {
     if (this.queue.get(key) != undefined) {
       for (const iterator of this.queue.get(key)!.values()) {
         setTimeout(() => {
@@ -40,7 +57,7 @@ class LSWatcher {
       }
     }
   }
-  broadcastAll(payload: any = null) {
+  broadcastAll(payload: any = null): void {
     for (const [key, value] of this.queue.entries()) {
       for (const iterator of value.values()) {
         setTimeout(() => {
@@ -49,6 +66,13 @@ class LSWatcher {
       }
     }
   }
+  /**
+   * 是否有人订阅了这个key
+   *
+   * @param {string} key
+   * @returns {boolean}
+   * @memberof LSWatcher
+   */
   has(key: string): boolean {
     return this.queue.has(this.prefix + key);
   }
@@ -56,7 +80,7 @@ class LSWatcher {
   /**
    * Clear storage
    */
-  clear() {
+  clear(): void {
     if (window.localStorage.length === 0) {
       return;
     }
@@ -75,7 +99,7 @@ class LSWatcher {
     this.queue.clear();
   }
   // 获取值
-  get(key: string, def = null) {
+  get(key: string, def = null): any {
     const item = window.localStorage.getItem(this.prefix + key);
 
     if (item !== null) {
@@ -90,7 +114,7 @@ class LSWatcher {
           return data.value;
         }
         window.localStorage.removeItem(this.prefix + key);
-      } catch (err) {
+      } catch {
         return def;
       }
     }
@@ -126,7 +150,7 @@ class LSWatcher {
     this.broadcast(this.prefix + key);
   }
   // 取消订阅
-  off(key: string, handler: Symbol) {
+  off(key: string, handler: Symbol): void {
     this.queue.get(this.prefix + key)!.delete(handler);
   }
 }
@@ -134,6 +158,8 @@ class LSWatcher {
 
 export default {
   install(vue: VueConstructor, options: lsOption) {
-    vue.prototype.$ls = new LSWatcher(options);
+    vue.prototype.$ls = new LSWatcher(options) as ILSWatcher;
   }
 };
+
+export { ILSWatcher };

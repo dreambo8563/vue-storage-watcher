@@ -1,6 +1,6 @@
 {
   "name": "vue-storage-watcher",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "author": "dreambo8563",
   "main": "dist/vue-storage-watcher.umd.min.js",
   "private": false,
@@ -32,6 +32,7 @@
     "@vue/eslint-config-prettier": "^4.0.1",
     "@vue/eslint-config-typescript": "^3.2.0",
     "babel-eslint": "^10.0.1",
+    "cz-conventional-changelog": "^2.1.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
     "typescript": "~3.2.4",
@@ -40,7 +41,7 @@
   "files": [
     "dist/*",
     "src/*",
-    "types/*",
+    "types/index.d.ts",
     "package.json",
     "*.js",
     "README.md"
@@ -52,5 +53,10 @@
     "vue-ls",
     "watch",
     "vue-storage"
-  ]
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
