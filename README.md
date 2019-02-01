@@ -6,11 +6,21 @@
 # vue-storage-watcher
 
 the real reactive watcher for localStorge.
-I search a while for a lib to make the ls reactive, but failed.
+I search a few days for a lib to watch the ls, but failed.
 
-you can using the tiny ls wrapper to work in vue.js well.
+you can use this tiny ls wrapper which works well with vue.js.
 
-familiar usage just like **bus**.
+you can use this as persistent data layer even instead of vuex.
+
+- familiar usage just like **bus**.
+- reactive
+- type supported
+- small size
+
+TODO:
+
+- [ ] support sessionStorage
+
 
 ### Install
 
@@ -28,9 +38,10 @@ Vue.use(lsWatcher, { prefix: "myproject_" })
 
 - localStorage
 
+
 ### Methods
 
-Vue.ls in global or this.\$ls in Component context
+ this.\$ls in Component context
 
 #### set
 
@@ -38,16 +49,16 @@ Vue.ls in global or this.\$ls in Component context
 this.$ls.set("token", "abccc")
 ```
 
-the value will be save in storage with the **prefix** + key
-and emit the change value to all the subscriber of this key
+the value will be saved in storage with the **prefix** + key
+and emit the changes to all the subscribers.
 
-> you also can give the key an expire duration with unit of ms
+> you also can give the key an expire duration with the unit of ms
 
 ```js
 this.$ls.set("token", "abccc", 3000)
 ```
 
-the will be expried in 3s, you will get null after that.
+the key will be expried in 3s, you will get null after that.
 
 #### get
 
@@ -55,7 +66,7 @@ the will be expried in 3s, you will get null after that.
 this.$ls.get("token", "default")
 ```
 
-get the value with a default return value when not exist
+get the value with a default return value if it's not existed
 
 #### subscribe the key
 
@@ -63,7 +74,7 @@ get the value with a default return value when not exist
 this.$ls.on("token", callback)
 ```
 
-subscribe the key in the storage, will trigger the callback function if any changes happen with the key
+subscribe the key in the storage, will trigger the callback function if any changes happen.
 
 the return value is the handler need to be used to unsubscribe
 
@@ -74,7 +85,7 @@ const handler = this.$ls.on("token", cb)
 this.$ls.off("token", handler)
 ```
 
-please make sure you unsubscribe beforeDestroy the component
+> please make sure you unsubscribe  beforeDestroy the component
 
 #### remove
 
@@ -82,7 +93,7 @@ please make sure you unsubscribe beforeDestroy the component
 this.$ls.remove("token")
 ```
 
-remove will delete the key in storage and tell all the subscriber with **null** value
+remove will delete the key in storage and emit all the subscribers with **null** value
 
 #### clear
 
@@ -90,7 +101,7 @@ remove will delete the key in storage and tell all the subscriber with **null** 
 this.$ls.clear()
 ```
 
-del all the key with your **prefix**. and all the subscribers can **not** receive changes
+delete all the keys with your **prefix**. and all the subscribers will **not** receive changes any more
 
 #### init
 
@@ -102,40 +113,4 @@ init will set all your current localStorge keys into the plugins
 
 - add prefix for all the keys
 
-and then you can using get and on mehtod to make it reactive
-
-###
-
-## Project setup
-
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Run your tests
-
-```
-npm run test
-```
-
-### Lints and fixes files
-
-```
-npm run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+and then you can use **get** and **on** mehtod to make them reactive
