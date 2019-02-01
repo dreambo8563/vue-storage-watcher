@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3b39774059a445f19dcccc5d5ba01a23)](https://app.codacy.com/app/dreambo8563/vue-storage-watcher?utm_source=github.com&utm_medium=referral&utm_content=dreambo8563/vue-storage-watcher&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.com/dreambo8563/vue-storage-watcher.svg?branch=master)](https://travis-ci.com/dreambo8563/vue-storage-watcher) [![Greenkeeper badge](https://badges.greenkeeper.io/dreambo8563/vue-storage-watcher.svg)](https://greenkeeper.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Known Vulnerabilities](https://snyk.io/test/github/dreambo8563/vue-storage-watcher/badge.svg?targetFile=package.json)](https://snyk.io/test/github/dreambo8563/vue-storage-watcher?targetFile=package.json)
