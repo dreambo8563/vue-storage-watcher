@@ -21,7 +21,6 @@ TODO:
 
 - [ ] support sessionStorage
 
-
 ### Install
 
 > npm install vue-storage-watcher --save
@@ -38,10 +37,9 @@ Vue.use(lsWatcher, { prefix: "myproject_" })
 
 - localStorage
 
-
 ### Methods
 
- this.\$ls in Component context
+this.\$ls in Component context
 
 #### set
 
@@ -78,6 +76,13 @@ subscribe the key in the storage, will trigger the callback function if any chan
 
 the return value is the handler need to be used to unsubscribe
 
+> tricky
+> there is an immdiate options as a third args which will trigger cb immediate if set **true**
+
+```js
+this.$ls.on("token", callback, true)
+```
+
 #### unsubscribe the key
 
 ```js
@@ -85,7 +90,7 @@ const handler = this.$ls.on("token", cb)
 this.$ls.off("token", handler)
 ```
 
-> please make sure you unsubscribe  beforeDestroy the component
+> please make sure you unsubscribe beforeDestroy the component
 
 #### remove
 
