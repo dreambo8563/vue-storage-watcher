@@ -77,7 +77,7 @@ subscribe the key in the storage, will trigger the callback function if any chan
 the return value is the handler need to be used to unsubscribe
 
 > tricky
-> there is an immdiate options as a third args which will trigger cb immediate if set **true**
+> there is an immediate options as a third args which will trigger cb immediate if set **true**
 
 ```js
 this.$ls.on("token", callback, true)
