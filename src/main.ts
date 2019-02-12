@@ -1,7 +1,8 @@
 import Vue, { VueConstructor } from "vue";
 
-type lsOption = {
-  prefix: string;
+export type lsOption = {
+  prefix?: string;
+  storage?: "local" | "session";
 };
 interface ILSWatcher {
   // constuctor(op: lsOption): void;
@@ -19,9 +20,23 @@ interface ILSWatcher {
 class LSWatcher {
   // 内置事件队列
   private queue: Map<string, Map<Symbol, Function>> = new Map();
-  private prefix = "";
+  private prefix: string;
+  private storageObj: Storage;
   constructor(options: lsOption) {
-    this.prefix = options.prefix || "lswatcher_";
+    const { prefix, storage } = options;
+    this.prefix = prefix || "";
+    const storagePrefix = storage || "local";
+    if (!["local", "session"].includes(storagePrefix)) {
+      throw new Error("storage param should be 'local' or 'session'");
+    }
+    switch (storagePrefix) {
+      case "session":
+        this.storageObj = window.sessionStorage;
+        break;
+      default:
+        this.storageObj = window.localStorage;
+        break;
+    }
   }
   // 注册事件
   on(key: string, fn: Function, immediate: boolean = false): Symbol {
@@ -44,7 +59,7 @@ class LSWatcher {
       value: payload,
       expire: expire !== null ? new Date().getTime() + expire : null
     });
-    window.localStorage.setItem(this.prefix + key, stringifyValue);
+    this.storageObj.setItem(this.prefix + key, stringifyValue);
     // 通知订阅者
     this.broadcast(this.prefix + key, payload);
   }
@@ -81,26 +96,26 @@ class LSWatcher {
    * Clear storage
    */
   clear(): void {
-    if (window.localStorage.length === 0) {
+    if (this.storageObj.length === 0) {
       return;
     }
     const regexp = new RegExp(`^${this.prefix}.+`, "i");
     const removedKeys: string[] = [];
-    for (const k of Object.keys(window.localStorage)) {
+    for (const k of Object.keys(this.storageObj)) {
       if (regexp.test(k) === false) {
         continue;
       }
       removedKeys.push(k);
     }
     for (const key of removedKeys) {
-      window.localStorage.removeItem(key);
+      this.storageObj.removeItem(key);
     }
     this.broadcastAll(null);
     this.queue.clear();
   }
   // 获取值
   get(key: string, def = null): any {
-    const item = window.localStorage.getItem(this.prefix + key);
+    const item = this.storageObj.getItem(this.prefix + key);
 
     if (item !== null) {
       try {
@@ -113,7 +128,7 @@ class LSWatcher {
         if (data.expire >= new Date().getTime()) {
           return data.value;
         }
-        window.localStorage.removeItem(this.prefix + key);
+        this.storageObj.removeItem(this.prefix + key);
       } catch {
         return def;
       }
@@ -122,10 +137,10 @@ class LSWatcher {
     return def;
   }
   init(): void {
-    const keys = Object.keys(window.localStorage);
+    const keys = Object.keys(this.storageObj);
 
     for (const k of keys) {
-      const item = window.localStorage.getItem(k);
+      const item = this.storageObj.getItem(k);
 
       if (item !== null) {
         try {
@@ -146,7 +161,7 @@ class LSWatcher {
    * @return {boolean}
    */
   remove(key: string): void {
-    window.localStorage.removeItem(this.prefix + key);
+    this.storageObj.removeItem(this.prefix + key);
     this.broadcast(this.prefix + key);
   }
   // 取消订阅
@@ -156,15 +171,10 @@ class LSWatcher {
 }
 // 暂时只用单例
 export type LsWatcherPlugin = {
-  install(
-    vue: VueConstructor<Vue>,
-    options: {
-      prefix: string;
-    }
-  ): void;
+  install(vue: VueConstructor<Vue>, options: lsOption): void;
 };
 const instantce: LsWatcherPlugin = {
-  install(vue: VueConstructor, options: lsOption) {
+  install(vue, options) {
     vue.prototype.$ls = new LSWatcher(options) as ILSWatcher;
   }
 };

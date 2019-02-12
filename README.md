@@ -19,7 +19,7 @@ you can use this as persistent data layer even instead of vuex.
 
 TODO:
 
-- [ ] support sessionStorage
+- [x] support sessionStorage
 
 ### Install
 
@@ -36,6 +36,12 @@ Vue.use(lsWatcher, { prefix: "myproject_" })
 > storage type
 
 - localStorage
+- sessionStorage
+
+### Options
+
+- prefix => default is ""
+- storage => default is "local" which means window.localStorage will be used as Storage Object. Another alternative is "session"
 
 ### Methods
 
