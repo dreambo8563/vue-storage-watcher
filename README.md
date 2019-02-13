@@ -45,7 +45,9 @@ Vue.use(lsWatcher, { prefix: "myproject_" })
 
 ### Methods
 
-this.\$ls in Component context
+this.\$ls or this.\$ss in Component context for localStorage/sessionStorage
+
+> I will list basic api just with ls.
 
 #### set
 
@@ -125,3 +127,15 @@ init will set all your current localStorge keys into the plugins
 - add prefix for all the keys
 
 and then you can use **get** and **on** mehtod to make them reactive
+
+### FAQ
+
+- if you want to using localStorage and sessionStorage at same page, pls use the plugin as following
+
+```js
+import lsWatcher from "vue-storage-watcher"
+
+Vue.use({ ...lsWatcher }, { prefix: "myproject_" })
+
+Vue.use({ ...lsWatcher }, { prefix: "myproject_ss_", stroage: "session" })
+```
