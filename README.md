@@ -20,6 +20,8 @@ you can use this as persistent data layer even instead of vuex.
 TODO:
 
 - [x] support sessionStorage
+- [ ] logo design
+- [ ] show usage with github pages maybe
 
 ### Install
 
@@ -139,3 +141,5 @@ Vue.use({ ...lsWatcher }, { prefix: "myproject_" })
 
 Vue.use({ ...lsWatcher }, { prefix: "myproject_ss_", stroage: "session" })
 ```
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdreambo8563%2Fvue-storage-watcher.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdreambo8563%2Fvue-storage-watcher?ref=badge_large)
