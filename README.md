@@ -139,3 +139,5 @@ Vue.use({ ...lsWatcher }, { prefix: "myproject_" })
 
 Vue.use({ ...lsWatcher }, { prefix: "myproject_ss_", stroage: "session" })
 ```
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdreambo8563%2Fvue-storage-watcher.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdreambo8563%2Fvue-storage-watcher?ref=badge_large)
