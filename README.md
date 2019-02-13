@@ -20,6 +20,8 @@ you can use this as persistent data layer even instead of vuex.
 TODO:
 
 - [x] support sessionStorage
+- [ ] logo design
+- [ ] show usage with github pages maybe
 
 ### Install
 
