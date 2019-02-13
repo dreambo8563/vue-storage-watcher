@@ -175,7 +175,11 @@ export type LsWatcherPlugin = {
 };
 const instantce: LsWatcherPlugin = {
   install(vue, options) {
-    vue.prototype.$ls = new LSWatcher(options) as ILSWatcher;
+    let alias = "$ls";
+    if (options.storage == "session") {
+      alias = "$ss";
+    }
+    vue.prototype[alias] = new LSWatcher(options) as ILSWatcher;
   }
 };
 export default instantce;

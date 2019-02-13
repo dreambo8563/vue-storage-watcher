@@ -3,12 +3,14 @@ import { ILSWatcher } from "./main";
 declare module "vue/types/vue" {
   interface Vue {
     $ls: ILSWatcher;
+    $ss: ILSWatcher;
   }
 }
 
 declare module "vue/types/options" {
   interface ComponentOptions<V extends Vue> {
     $ls?: ILSWatcher;
+    $ss?: ILSWatcher;
   }
 }
 
