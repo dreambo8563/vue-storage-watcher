@@ -145,7 +145,7 @@ import lsWatcher from "vue-storage-watcher"
 
 Vue.use({ ...lsWatcher }, { prefix: "myproject_" })
 
-Vue.use({ ...lsWatcher }, { prefix: "myproject_ss_", stroage: "session" })
+Vue.use({ ...lsWatcher }, { prefix: "myproject_ss_", storage: "session" })
 ```
 
 ## License
