@@ -3,6 +3,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Known Vulnerabilities](https://snyk.io/test/github/dreambo8563/vue-storage-watcher/badge.svg?targetFile=package.json)](https://snyk.io/test/github/dreambo8563/vue-storage-watcher?targetFile=package.json)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdreambo8563%2Fvue-storage-watcher.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdreambo8563%2Fvue-storage-watcher?ref=badge_shield)
+![npm type definitions](https://img.shields.io/npm/types/vue-storage-watcher.svg?style=flat)
+![npm](https://img.shields.io/npm/dt/vue-storage-watcher.svg?style=flat)
 
 # vue-storage-watcher
 
