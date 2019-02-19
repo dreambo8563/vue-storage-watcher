@@ -26,6 +26,7 @@ TODO:
 
 - [x] support sessionStorage
 - [x] logo design
+- [ ] ttl method like redis to get remaining lifetime in ms
 - [ ] show usage with github pages maybe
 
 ### Install
