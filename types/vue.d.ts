@@ -5,6 +5,10 @@ declare module "vue/types/vue" {
     $ls: ILSWatcher;
     $ss: ILSWatcher;
   }
+  interface VueConstructor {
+    $ls: ILSWatcher;
+    $ss: ILSWatcher;
+  }
 }
 
 declare module "vue/types/options" {

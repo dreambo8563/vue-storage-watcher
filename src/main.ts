@@ -18,7 +18,7 @@ interface ILSWatcher {
   off(key: string, handler: Symbol): void;
 }
 class LSWatcher {
-  // 内置事件队列
+  // internal event queue 内置事件队列
   private queue: Map<string, Map<Symbol, Function>> = new Map();
   private prefix: string;
   private storageObj: Storage;
@@ -26,7 +26,7 @@ class LSWatcher {
     const { prefix, storage } = options;
     this.prefix = prefix || "";
     const storagePrefix = storage || "local";
-    if (!["local", "session"].includes(storagePrefix)) {
+    if (["local", "session"].indexOf(storagePrefix) === -1) {
       throw new Error("storage param should be 'local' or 'session'");
     }
     switch (storagePrefix) {
@@ -40,6 +40,9 @@ class LSWatcher {
   }
   // 注册事件
   on(key: string, fn: Function, immediate: boolean = false): Symbol {
+    if (typeof fn !== "function") {
+      throw new Error("the second arg should be the callback function");
+    }
     const handler = Symbol(fn.name);
     const keyInQueue = this.queue.get(this.prefix + key);
     if (keyInQueue) {
