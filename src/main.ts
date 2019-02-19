@@ -182,7 +182,13 @@ const instantce: LsWatcherPlugin = {
     if (options.storage == "session") {
       alias = "$ss";
     }
-    vue.prototype[alias] = new LSWatcher(options) as ILSWatcher;
+    const storage = new LSWatcher(options) as ILSWatcher;
+    vue.prototype[alias] = storage;
+    Object.defineProperty(Vue, `${alias}`, {
+      get() {
+        return storage;
+      }
+    });
   }
 };
 export default instantce;
