@@ -51,6 +51,7 @@ Vue.use(lsWatcher, { prefix: "myproject_" })
 ### Methods
 
 this.\$ls or this.\$ss in Component context for localStorage/sessionStorage
+Vue.\$ls or Vue.\$ss in global.
 
 > I will list basic api just with ls.
 
