@@ -39,6 +39,7 @@ class LSWatcher {
     }
   }
   // 注册事件
+  // register the event of the key
   on(key: string, fn: Function, immediate: boolean = false): Symbol {
     if (typeof fn !== "function") {
       throw new Error("the second arg should be the callback function");
@@ -86,6 +87,7 @@ class LSWatcher {
   }
   /**
    * 是否有人订阅了这个key
+   * check if there is any subscriber of the key
    *
    * @param {string} key
    * @returns {boolean}
@@ -131,7 +133,7 @@ class LSWatcher {
         if (data.expire >= new Date().getTime()) {
           return data.value;
         }
-        this.storageObj.removeItem(this.prefix + key);
+        this.remove(key);
       } catch {
         return def;
       }
@@ -172,7 +174,7 @@ class LSWatcher {
     this.queue.get(this.prefix + key)!.delete(handler);
   }
 }
-// 暂时只用单例
+// 暂时只用单例 - single instance
 export type LsWatcherPlugin = {
   install(vue: VueConstructor<Vue>, options: lsOption): void;
 };
