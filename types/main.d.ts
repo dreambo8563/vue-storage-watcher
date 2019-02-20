@@ -14,6 +14,7 @@ interface ILSWatcher {
   init(): void;
   remove(key: string): void;
   off(key: string, handler: Symbol): void;
+  ttl(key: string): number;
 }
 export declare type LsWatcherPlugin = {
   install(vue: VueConstructor<Vue>, options: lsOption): void;
