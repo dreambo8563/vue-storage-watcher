@@ -86,7 +86,7 @@ ttl will return **-1** if one of the following scenarios happen:
 else return the remaining lifetime with ms as the unit
 
 ```js
-this.$ls.ttl("token)
+this.$ls.ttl("token")
 ```
 
 #### get
