@@ -1,0 +1,25 @@
+{
+  "projectName": "vue-storage-watcher",
+  "projectOwner": "dreambo8563",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "me",
+      "name": "Ivan",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/9734?v=4",
+      "profile": "https://github.com/me",
+      "contributions": [
+        "code",
+        "doc",
+        "bug"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
