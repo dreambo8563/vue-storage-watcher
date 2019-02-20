@@ -1,4 +1,5 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3b39774059a445f19dcccc5d5ba01a23)](https://app.codacy.com/app/dreambo8563/vue-storage-watcher?utm_source=github.com&utm_medium=referral&utm_content=dreambo8563/vue-storage-watcher&utm_campaign=Badge_Grade_Dashboard)
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 [![Build Status](https://travis-ci.com/dreambo8563/vue-storage-watcher.svg?branch=master)](https://travis-ci.com/dreambo8563/vue-storage-watcher) [![Greenkeeper badge](https://badges.greenkeeper.io/dreambo8563/vue-storage-watcher.svg)](https://greenkeeper.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Known Vulnerabilities](https://snyk.io/test/github/dreambo8563/vue-storage-watcher/badge.svg?targetFile=package.json)](https://snyk.io/test/github/dreambo8563/vue-storage-watcher?targetFile=package.json)
@@ -166,3 +167,15 @@ Vue.use({ ...lsWatcher }, { prefix: "myproject_ss_", storage: "session" })
 ## License
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdreambo8563%2Fvue-storage-watcher.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdreambo8563%2Fvue-storage-watcher?ref=badge_large)
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://github.com/all-contributors/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars2.githubusercontent.com/u/9734?v=4" width="100px;" alt="Ivan"/><br /><sub><b>Ivan</b></sub>](https://github.com/me)<br />[💻](https://github.com/dreambo8563/vue-storage-watcher/commits?author=me "Code") [📖](https://github.com/dreambo8563/vue-storage-watcher/commits?author=me "Documentation") [🐛](https://github.com/dreambo8563/vue-storage-watcher/issues?q=author%3Ame "Bug reports") |
+| :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
