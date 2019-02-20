@@ -1,5 +1,20 @@
+<a name="1.2.1"></a>
+## [1.2.1](https://github.com/dreambo8563/vue-storage-watcher/compare/1.1.3...1.2.1) (2019-02-20)
+
+
+### Bug Fixes
+
+* **expire:** when getItem and it's expired, we should emit the subscribers with null ([9e0fa77](https://github.com/dreambo8563/vue-storage-watcher/commit/9e0fa77))
+
+
+### Features
+
+* **ttl:** add ttl method ([abbd794](https://github.com/dreambo8563/vue-storage-watcher/commit/abbd794))
+
+
+
 <a name="1.1.3"></a>
-## [1.1.3](https://github.com/dreambo8563/vue-storage-watcher/compare/v1.1.2...v1.1.3) (2019-02-19)
+## [1.1.3](https://github.com/dreambo8563/vue-storage-watcher/compare/1.1.2...v1.1.3) (2019-02-19)
 
 
 

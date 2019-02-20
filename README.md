@@ -26,7 +26,7 @@ TODO:
 
 - [x] support sessionStorage
 - [x] logo design
-- [ ] ttl method like redis to get remaining lifetime in ms
+- [x] ttl method like redis to get remaining lifetime in ms
 - [ ] show usage with github pages maybe
 
 ### Install
@@ -74,6 +74,20 @@ this.$ls.set("token", "abccc", 3000)
 ```
 
 the key will be expried in 3s, you will get null after that.
+
+#### ttl
+
+ttl will return **-1** if one of the following scenarios happen:
+
+- the key is non-exist
+- the key is already expired
+- the key has no expire time
+
+else return the remaining lifetime with ms as the unit
+
+```js
+this.$ls.ttl("token)
+```
 
 #### get
 

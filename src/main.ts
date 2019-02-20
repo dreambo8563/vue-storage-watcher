@@ -5,7 +5,6 @@ export type lsOption = {
   storage?: "local" | "session";
 };
 interface ILSWatcher {
-  // constuctor(op: lsOption): void;
   on(key: string, fn: Function, immediate?: boolean): Symbol;
   set(key: string, payload: any, expire?: number | null): void;
   broadcast(key: string, payload?: any): void;
@@ -16,6 +15,7 @@ interface ILSWatcher {
   init(): void;
   remove(key: string): void;
   off(key: string, handler: Symbol): void;
+  ttl(key: string): number;
 }
 class LSWatcher {
   // internal event queue 内置事件队列
@@ -39,6 +39,7 @@ class LSWatcher {
     }
   }
   // 注册事件
+  // register the event of the key
   on(key: string, fn: Function, immediate: boolean = false): Symbol {
     if (typeof fn !== "function") {
       throw new Error("the second arg should be the callback function");
@@ -58,12 +59,14 @@ class LSWatcher {
   //赋值
   set(key: string, payload: any, expire: number | null = null): void {
     // 先存入 ls
+    // save into storage
     const stringifyValue = JSON.stringify({
       value: payload,
       expire: expire !== null ? new Date().getTime() + expire : null
     });
     this.storageObj.setItem(this.prefix + key, stringifyValue);
     // 通知订阅者
+    // inform subscribers
     this.broadcast(this.prefix + key, payload);
   }
   broadcast(key: string, payload: any = null): void {
@@ -86,6 +89,7 @@ class LSWatcher {
   }
   /**
    * 是否有人订阅了这个key
+   * check if there is any subscriber of the key
    *
    * @param {string} key
    * @returns {boolean}
@@ -120,24 +124,46 @@ class LSWatcher {
   get(key: string, def = null): any {
     const item = this.storageObj.getItem(this.prefix + key);
 
-    if (item !== null) {
-      try {
-        const data = JSON.parse(item);
-
-        if (data.expire === null) {
-          return data.value;
-        }
-
-        if (data.expire >= new Date().getTime()) {
-          return data.value;
-        }
-        this.storageObj.removeItem(this.prefix + key);
-      } catch {
-        return def;
-      }
+    if (item == null) {
+      return def;
     }
+    try {
+      const data = JSON.parse(item);
 
-    return def;
+      if (data.expire === null) {
+        return data.value;
+      }
+
+      if (data.expire >= new Date().getTime()) {
+        return data.value;
+      }
+      this.remove(key);
+    } catch {
+      return def;
+    }
+  }
+  /**
+   * if the key non-exist / no expire time / already expired  return -1,
+   * else return remaining lifetime with unit of ms
+   *
+   * @param {string} key
+   * @returns {number}
+   * @memberof LSWatcher
+   */
+  ttl(key: string): number {
+    const item = this.storageObj.getItem(this.prefix + key);
+    if (item == null) {
+      return -1;
+    }
+    try {
+      const data = JSON.parse(item);
+      if (data.expire >= new Date().getTime()) {
+        return data.expire - new Date().getTime();
+      }
+      return -1;
+    } catch {
+      return -1;
+    }
   }
   init(): void {
     const keys = Object.keys(this.storageObj);
@@ -167,12 +193,12 @@ class LSWatcher {
     this.storageObj.removeItem(this.prefix + key);
     this.broadcast(this.prefix + key);
   }
-  // 取消订阅
+  // 取消订阅 - unsubscribe
   off(key: string, handler: Symbol): void {
     this.queue.get(this.prefix + key)!.delete(handler);
   }
 }
-// 暂时只用单例
+// 暂时只用单例 - single instance
 export type LsWatcherPlugin = {
   install(vue: VueConstructor<Vue>, options: lsOption): void;
 };
