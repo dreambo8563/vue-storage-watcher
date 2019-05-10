@@ -1,5 +1,5 @@
-<a name="1.2.1"></a>
-## [1.2.1](https://github.com/dreambo8563/vue-storage-watcher/compare/1.1.3...1.2.1) (2019-02-20)
+<a name="1.2.2"></a>
+## [1.2.2](https://github.com/dreambo8563/vue-storage-watcher/compare/1.1.3...1.2.2) (2019-05-10)
 
 
 ### Bug Fixes
@@ -9,6 +9,7 @@
 
 ### Features
 
+* **add keys:** get all stored keys ([da83306](https://github.com/dreambo8563/vue-storage-watcher/commit/da83306))
 * **ttl:** add ttl method ([abbd794](https://github.com/dreambo8563/vue-storage-watcher/commit/abbd794))
 
 
@@ -30,17 +31,8 @@
 
 ### Features
 
-* **logo:** add logo in read me ([6b9ffe9](https://github.com/dreambo8563/vue-storage-watcher/commit/6b9ffe9))
-
-
-
-<a name="1.1.1"></a>
-## [1.1.1](https://github.com/dreambo8563/vue-storage-watcher/compare/v1.1.0...v1.1.1) (2019-02-13)
-
-
-### Features
-
 * **alias:** seperate ls and ss alias ([ff643f4](https://github.com/dreambo8563/vue-storage-watcher/commit/ff643f4))
+* **logo:** add logo in read me ([6b9ffe9](https://github.com/dreambo8563/vue-storage-watcher/commit/6b9ffe9))
 
 
 
