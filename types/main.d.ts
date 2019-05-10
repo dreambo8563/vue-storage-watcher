@@ -11,6 +11,7 @@ interface ILSWatcher {
   has(key: string): boolean;
   clear(): void;
   get(key: string, def?: any): any;
+  keys(): string[];
   init(): void;
   remove(key: string): void;
   off(key: string, handler: Symbol): void;
