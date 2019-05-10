@@ -37,9 +37,9 @@ TODO:
 ### Sample
 
 ```js
-import lsWatcher from "vue-storage-watcher"
+import lsWatcher from 'vue-storage-watcher';
 
-Vue.use(lsWatcher, { prefix: "myproject_" })
+Vue.use(lsWatcher, { prefix: 'myproject_' });
 ```
 
 > storage type
@@ -62,7 +62,7 @@ Vue.\$ls or Vue.\$ss in global.
 #### set
 
 ```js
-this.$ls.set("token", "abccc")
+this.$ls.set('token', 'abccc');
 ```
 
 the value will be saved in storage with the **prefix** + key
@@ -71,7 +71,7 @@ and emit the changes to all the subscribers.
 > you also can give the key an expire duration with the unit of ms
 
 ```js
-this.$ls.set("token", "abccc", 3000)
+this.$ls.set('token', 'abccc', 3000);
 ```
 
 the key will be expried in 3s, you will get null after that.
@@ -87,21 +87,29 @@ ttl will return **-1** if one of the following scenarios happen:
 else return the remaining lifetime with ms as the unit
 
 ```js
-this.$ls.ttl("token")
+this.$ls.ttl('token');
 ```
 
 #### get
 
 ```js
-this.$ls.get("token", "default")
+this.$ls.get('token', 'default');
 ```
 
 get the value with a default return value if it's not existed
 
+#### keys
+
+```js
+this.$ls.keys();
+```
+
+get all keys stored in the storage.
+
 #### subscribe the key
 
 ```js
-this.$ls.on("token", callback)
+this.$ls.on('token', callback);
 ```
 
 subscribe the key in the storage, will trigger the callback function if any changes happen.
@@ -112,14 +120,14 @@ the return value is the handler need to be used to unsubscribe
 > there is an immediate options as a third args which will trigger cb immediate if set **true**
 
 ```js
-this.$ls.on("token", callback, true)
+this.$ls.on('token', callback, true);
 ```
 
 #### unsubscribe the key
 
 ```js
-const handler = this.$ls.on("token", cb)
-this.$ls.off("token", handler)
+const handler = this.$ls.on('token', cb);
+this.$ls.off('token', handler);
 ```
 
 > please make sure you unsubscribe beforeDestroy the component
@@ -127,7 +135,7 @@ this.$ls.off("token", handler)
 #### remove
 
 ```js
-this.$ls.remove("token")
+this.$ls.remove('token');
 ```
 
 remove will delete the key in storage and emit all the subscribers with **null** value
@@ -135,7 +143,7 @@ remove will delete the key in storage and emit all the subscribers with **null**
 #### clear
 
 ```js
-this.$ls.clear()
+this.$ls.clear();
 ```
 
 delete all the keys with your **prefix**. and all the subscribers will **not** receive changes any more
@@ -143,7 +151,7 @@ delete all the keys with your **prefix**. and all the subscribers will **not** r
 #### init
 
 ```js
-this.$ls.init()
+this.$ls.init();
 ```
 
 init will set all your current localStorge keys into the plugins
@@ -157,11 +165,19 @@ and then you can use **get** and **on** mehtod to make them reactive
 - if you want to using localStorage and sessionStorage at same page, pls use the plugin as following
 
 ```js
-import lsWatcher from "vue-storage-watcher"
+import lsWatcher from 'vue-storage-watcher';
 
-Vue.use({ ...lsWatcher }, { prefix: "myproject_" })
+Vue.use({ ...lsWatcher }, { prefix: 'myproject_' });
 
-Vue.use({ ...lsWatcher }, { prefix: "myproject_ss_", storage: "session" })
+Vue.use({ ...lsWatcher }, { prefix: 'myproject_ss_', storage: 'session' });
+```
+
+- possibly polyfill
+
+```js
+// wather polyfill for IE 11
+import 'core-js/fn/symbol';
+import 'core-js/fn/map';
 ```
 
 - possibly polyfill

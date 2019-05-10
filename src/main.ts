@@ -12,6 +12,7 @@ interface ILSWatcher {
   has(key: string): boolean;
   clear(): void;
   get(key: string, def?: any): any;
+  keys(): string[];
   init(): void;
   remove(key: string): void;
   off(key: string, handler: Symbol): void;
@@ -106,19 +107,30 @@ class LSWatcher {
     if (this.storageObj.length === 0) {
       return;
     }
-    const regexp = new RegExp(`^${this.prefix}.+`, "i");
-    const removedKeys: string[] = [];
-    for (const k of Object.keys(this.storageObj)) {
-      if (regexp.test(k) === false) {
-        continue;
-      }
-      removedKeys.push(k);
-    }
+
+    const removedKeys: string[] = this.keys();
     for (const key of removedKeys) {
       this.storageObj.removeItem(key);
     }
     this.broadcastAll(null);
     this.queue.clear();
+  }
+  /**
+   * query all the keys stored in watccher
+   *
+   * @returns {string[]}
+   * @memberof LSWatcher
+   */
+  keys(): string[] {
+    const regexp = new RegExp(`^${this.prefix}.+`, "i");
+    const myKeys: string[] = [];
+    for (const k of Object.keys(this.storageObj)) {
+      if (regexp.test(k) === false) {
+        continue;
+      }
+      myKeys.push(k);
+    }
+    return myKeys;
   }
   // 获取值
   get(key: string, def = null): any {
