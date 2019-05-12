@@ -110,7 +110,7 @@ class LSWatcher {
 
     const removedKeys: string[] = this.keys();
     for (const key of removedKeys) {
-      this.storageObj.removeItem(key);
+      this.storageObj.removeItem(`${this.prefix}${key}`);
     }
     this.broadcastAll(null);
     this.queue.clear();
@@ -128,7 +128,7 @@ class LSWatcher {
       if (regexp.test(k) === false) {
         continue;
       }
-      myKeys.push(k);
+      myKeys.push(k.replace(this.prefix, ""));
     }
     return myKeys;
   }

@@ -1,5 +1,25 @@
+<a name="1.2.5"></a>
+## [1.2.5](https://github.com/dreambo8563/vue-storage-watcher/compare/v1.2.4...v1.2.5) (2019-05-12)
+
+
+
+<a name="1.2.4"></a>
+## [1.2.4](https://github.com/dreambo8563/vue-storage-watcher/compare/v1.2.3...v1.2.4) (2019-05-12)
+
+
+
+<a name="1.2.3"></a>
+## [1.2.3](https://github.com/dreambo8563/vue-storage-watcher/compare/v1.2.2...v1.2.3) (2019-05-12)
+
+
+### Bug Fixes
+
+* **hotfix keys:** rm prefix for all keys ([591287f](https://github.com/dreambo8563/vue-storage-watcher/commit/591287f))
+
+
+
 <a name="1.2.2"></a>
-## [1.2.2](https://github.com/dreambo8563/vue-storage-watcher/compare/1.1.3...1.2.2) (2019-05-10)
+## [1.2.2](https://github.com/dreambo8563/vue-storage-watcher/compare/1.1.3...v1.2.2) (2019-05-10)
 
 
 ### Bug Fixes
