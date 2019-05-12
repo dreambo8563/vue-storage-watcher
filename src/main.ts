@@ -128,7 +128,7 @@ class LSWatcher {
       if (regexp.test(k) === false) {
         continue;
       }
-      myKeys.push(k.replace(regexp, ""));
+      myKeys.push(k.replace(this.prefix, ""));
     }
     return myKeys;
   }
