@@ -1,3 +1,8 @@
+<a name="1.3.1"></a>
+## [1.3.1](https://github.com/dreambo8563/vue-storage-watcher/compare/v1.3.0...v1.3.1) (2019-08-20)
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/dreambo8563/vue-storage-watcher/compare/v1.2.5...v1.3.0) (2019-05-28)
 
@@ -24,7 +29,7 @@
 
 
 <a name="1.2.2"></a>
-## [1.2.2](https://github.com/dreambo8563/vue-storage-watcher/compare/1.1.3...v1.2.2) (2019-05-10)
+## [1.2.2](https://github.com/dreambo8563/vue-storage-watcher/compare/v1.2.1...v1.2.2) (2019-05-10)
 
 
 ### Bug Fixes
