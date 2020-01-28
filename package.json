@@ -40,7 +40,7 @@
     "prettier": "^1.18.2",
     "typescript": "^3.4.3",
     "vue-template-compiler": "^2.6.10",
-    "cz-conventional-changelog": "^2.1.0"
+    "cz-conventional-changelog": "^3.1.0"
   },
   "files": [
     "dist/*",
