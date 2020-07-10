@@ -1,6 +1,6 @@
 {
   "name": "vue-storage-watcher",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "private": false,
   "description": "A reactive localStorage plugin for vue",
   "author": "dreambo8563",
